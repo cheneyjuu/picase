@@ -31,6 +31,9 @@ public class MenuController {
     @ResponseBody
     public List<Menu> getChildMenu(@RequestParam("parentMenu") String parentMenu) {
         System.out.println(parentMenu);
+        if (parentMenu.equalsIgnoreCase("CorporateBusiness")){
+            parentMenu = "Corporate & Business";
+        }
         return menuService.findChildMenu(parentMenu);
     }
 

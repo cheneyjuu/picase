@@ -32,14 +32,26 @@ public class PictureService {
         pictureDao.save(picture);
     }
 
-    public Page<Picture> findByMenu(final String parentMenu, final String childMenu, int pageNumber, int pageSize) {
+    public Page<Picture> findByMenu(final String parentMenu, final String childMenu, final Long albumId, int pageNumber, int pageSize) {
         return pictureDao.findAll(new Specification<Picture>() {
             @Override
             public Predicate toPredicate(Root<Picture> pictureRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Path<String> pm = pictureRoot.get("album.parentMenu");
-                Path<String> cm = pictureRoot.get("album.childMenu");
+                Path<String> pm = pictureRoot.get("album").get("parentMenu");
+                Path<String> cm = pictureRoot.get("album").get("childMenu");
+                Path<Long>  aid = pictureRoot.get("album").get("id");
+                if (childMenu == null) {
+                    criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(pm, parentMenu),criteriaBuilder.equal(aid, albumId)));
+                } else {
+                    criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(pm, parentMenu),
+                            criteriaBuilder.equal(cm, childMenu)),
+                            criteriaBuilder.equal(aid, albumId));
+                }
                 return null;
             }
         }, new PageRequest(pageNumber - 1, pageSize));
+    }
+
+    public Picture findById(final Long pictureId){
+        return pictureDao.findOne(pictureId);
     }
 }

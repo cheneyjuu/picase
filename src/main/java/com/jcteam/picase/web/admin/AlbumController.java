@@ -46,6 +46,9 @@ public class AlbumController {
         if (album.getParentMenu().equalsIgnoreCase("CorporateBusiness")){
             album.setParentMenu("Corporate & Business");
         }
+        if (album.getChildMenu().equalsIgnoreCase("Interiorsbuildings")){
+            album.setChildMenu("Interiors & buildings");
+        }
         albumService.save(album);
         return null;
     }

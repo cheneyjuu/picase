@@ -16,7 +16,7 @@
     <ul class="thumbnails">
     <c:forEach items="${albums.content}" var="album">
         <li class="span3">
-            <a href="${ctx}/admin/picture/list/${album.parentMenu}-${album.childMenu}" class="thumbnail">
+            <a href="${ctx}/admin/picture/list/${album.parentMenu}-${album.childMenu}/${album.id}" class="thumbnail">
                 <img src="${ctx}/static/images/holder.jpg" alt="">
             </a>
         <span style="display: block; margin-bottom: 5px;">

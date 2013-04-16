@@ -7,6 +7,7 @@ import com.jcteam.picase.service.admin.PictureService;
 import com.jcteam.picase.utility.HandlerUpload;
 import com.jcteam.picase.utility.ImageTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +32,7 @@ import java.util.Map;
 @RequestMapping(value = "/admin/picture")
 public class PictureController {
 
+    private static int PAGE_SIZE=12;
     private PictureService pictureService;
     private AlbumService albumService;
 
@@ -81,19 +84,32 @@ public class PictureController {
         return "";
     }
 
-    @RequestMapping(value = "list/{menu}")
-    public String list(@PathVariable("menu") String menu){
+    @RequestMapping(value = "list/{menu}/{albumId}")
+    public String list(@PathVariable("menu") String menu,
+                       @PathVariable("albumId") Long albumId,
+                       @RequestParam(value = "page", defaultValue = "1") int pageNumber,
+                       Model model){
         String menus[] = menu.split("-");
         String parentMenu,childMenu;
         if (menus.length == 1) {
             parentMenu = menus[0];
-            childMenu = "";
+            childMenu = null;
         } else {
             parentMenu = menus[0];
             childMenu = menus[1];
         }
-        pictureService.findByMenu(parentMenu, childMenu, 1, 12);
-        System.out.println("uploadFileuploadFileuploadFile:  "+parentMenu+"   "+ childMenu);
+        Page<Picture> picturePage = pictureService.findByMenu(parentMenu, childMenu, albumId, pageNumber, PAGE_SIZE);
+        model.addAttribute("picturePage",picturePage);
+        return "admin/picture/list";
+    }
+
+    @RequestMapping (value = "update")
+    @ResponseBody
+    public String update(@RequestParam("intro") String intro,
+                         @RequestParam("pictureId") Long pictureId){
+        Picture picture = pictureService.findById(pictureId);
+        picture.setIntro(intro);
+        pictureService.save(picture);
         return null;
     }
 

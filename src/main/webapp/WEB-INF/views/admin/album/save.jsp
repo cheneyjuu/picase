@@ -98,6 +98,9 @@
             var childStr = "";
             $("#child_menu option:selected").each(function(){
                 childStr = $(this).text();
+                if (childStr == "Interiors & buildings") {
+                    childStr = "Interiorsbuildings";
+                }
                 $("#child_name").val(childStr);
             });
         });
