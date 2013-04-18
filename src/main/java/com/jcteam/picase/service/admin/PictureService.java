@@ -54,4 +54,9 @@ public class PictureService {
     public Picture findById(final Long pictureId){
         return pictureDao.findOne(pictureId);
     }
+
+    @Transactional (readOnly = false)
+    public void delete(final Long id) {
+        pictureDao.delete(id);
+    }
 }

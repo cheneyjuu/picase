@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -13,32 +14,42 @@
     </style>
 </head>
 <body>
-    <ul class="thumbnails">
-    <c:forEach items="${albums.content}" var="album">
-        <li class="span3">
-            <a href="${ctx}/admin/picture/list/${album.parentMenu}-${album.childMenu}/${album.id}" class="thumbnail">
-                <img src="${ctx}/static/images/holder.jpg" alt="">
-            </a>
-        <span style="display: block; margin-bottom: 5px;">
-            <c:if test="${album.childMenu!=null}">
-                ${album.childMenu}
-                &nbsp;->&nbsp;
-            </c:if>
-            ${album.title}
-        </span>
-        <div class="btn-group">
-            <a class="btn btn-primary" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-plus icon-white"></i> 添加图片</a>
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-pencil"></i> 修改相册</a></li>
-                <li><a href="#"><i class="icon-trash"></i> 删除相册</a></li>
-            </ul>
-        </div>
-        </li>
-    </c:forEach>
-    </ul>
-    <p>
-        <tags:pagination page="${albums}" paginationSize="12"/>
-    </p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>相册名称</th>
+            <th>所属菜单</th>
+            <th>添加图片</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${albums.content}" var="album" varStatus="status">
+            <tr>
+                <td>${status.index+1}</td>
+                <td>${album.title}</td>
+                <td>
+                    ${album.parentMenu}<c:if test="${fn:length(album.childMenu) > 0}">&nbsp;--&nbsp;${album.childMenu}</c:if>
+                </td>
+                <td>
+                    <a class="btn" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-plus"></i> 添加图片</a>
+                </td>
+                <td>
+                    <a class="btn" href="${ctx}/admin/picture/list/${album.parentMenu}-${album.childMenu}/${album.id}"><i class="icon-list"></i> 查看</a>
+                    <a class="btn btn-info" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-pencil icon-white"></i> 修改</a>
+                    <a class="btn btn-danger" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-trash icon-white"></i> 删除</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                <tags:pagination page="${albums}" paginationSize="12"/>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 </body>
 </html>

@@ -41,6 +41,28 @@ public class AlbumService {
         }, new PageRequest(pageNumber-1, pageSize));
     }
 
+    public Page<Album> findbyParentAndChildMenu(final String parentMenu, final String childMenu,
+                                                int pageNumber, int pageSize){
+        return albumDao.findAll(new Specification<Album>() {
+            @Override
+            public Predicate toPredicate(Root<Album> albumRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<String> pmenu = albumRoot.get("parentMenu");
+                Path<String> cmenu = albumRoot.get("childMenu");
+                if (childMenu != null) {
+                    criteriaQuery.where(
+                            criteriaBuilder.and(
+                                    criteriaBuilder.equal(pmenu, parentMenu),
+                                    criteriaBuilder.equal(cmenu, childMenu)
+                            )
+                    );
+                } else {
+                    criteriaQuery.where(criteriaBuilder.equal(pmenu, parentMenu));
+                }
+                return null;
+            }
+        }, new PageRequest(pageNumber - 1, pageSize));
+    }
+
     public Album findById(Long id){
         return albumDao.findOne(id);
     }

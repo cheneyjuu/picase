@@ -27,9 +27,9 @@
             <ul>
                 <li class="active"><a href="${ctx}/admin/album/save">相册管理</a></li>
                 <li><a href="${ctx}/admin/album/list/CorporateBusiness">Corporate & Business</a></li>
-                <li><a href="${ctx}/admin/album/save">Fashion</a></li>
+                <li><a href="${ctx}/admin/album/list/Fashion">Fashion</a></li>
                 <li><a href="${ctx}/admin/album/list/Wedding">Wedding</a></li>
-                <li><a href="#">Portrait</a></li>
+                <li><a href="${ctx}/admin/album/list/Portrait">Portrait</a></li>
                 <li><a href="#">About us & contact</a></li>
             </ul>
         </div>

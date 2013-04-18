@@ -43,7 +43,8 @@ public class PictureController {
     }
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)
-    public String save(@RequestParam("intro") String intro,@RequestParam("file") MultipartFile[] files,
+    public String save(@RequestParam("intro") String intro,
+                       @RequestParam("file") MultipartFile[] files,
                        @Valid @ModelAttribute("preloadAlbum") Album album,
                        HttpServletRequest request) {
         HandlerUpload handlerUpload = new HandlerUpload();
@@ -103,13 +104,20 @@ public class PictureController {
         return "admin/picture/list";
     }
 
-    @RequestMapping (value = "update")
+    @RequestMapping (value = "update", method = RequestMethod.POST)
     @ResponseBody
     public String update(@RequestParam("intro") String intro,
                          @RequestParam("pictureId") Long pictureId){
         Picture picture = pictureService.findById(pictureId);
         picture.setIntro(intro);
         pictureService.save(picture);
+        return null;
+    }
+
+    @RequestMapping (value = "delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(@RequestParam("pictureId") Long pictureId) {
+        pictureService.delete(pictureId);
         return null;
     }
 

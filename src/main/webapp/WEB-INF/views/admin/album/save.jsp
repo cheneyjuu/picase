@@ -5,22 +5,28 @@
 <html>
 <head>
     <title>新增相册</title>
+    <style type="text/css">
+        #title {
+            width: 218px;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <form class="span10 form-horizontal" action="/admin/album/save">
+        <form class="span10 form-horizontal" method="post" action="${ctx}/admin/album/save" enctype="multipart/form-data">
             <div class="control-group">
                 <label class="control-label" for="title">相册名：</label>
                 <div class="controls">
                     <input type="text" id="title" name="title" placeholder="相册名"/>
                 </div>
             </div>
-            <%--<div class="control-group">--%>
-                <%--<label class="control-label" for="cover">相册封面：</label>--%>
-                <%--<div class="controls">--%>
-                    <%--<input type="file" name="file"/>--%>
-                <%--</div>--%>
-            <%--</div>--%>
+            <div class="control-group">
+                <label class="control-label" for="image">相册封面：</label>
+                <div class="controls">
+                    <input name="file" type="file"/>
+                </div>
+            </div>
             <div class="control-group">
                 <label class="control-label" for="parent">所属菜单：</label>
                 <div class="controls">
@@ -106,19 +112,23 @@
         });
 
         $("#submit_form").click(function(){
-            var title = $("#title").val();
-            var pm = $("#parent_name").val();
-            var cm = $("#child_name").val();
-            $.ajax({
-                url:"${ctx}/admin/album/save",
-                type:"post",
-                data:"title="+title+"&parentMenu="+pm+"&childMenu="+cm,
-                success:function(msg){
-                    alert("添加成功");
-                }
-            });
-
+            $("form").submit();
         });
+
+        <%--$("#submit_form").click(function(){--%>
+            <%--var title = $("#title").val();--%>
+            <%--var pm = $("#parent_name").val();--%>
+            <%--var cm = $("#child_name").val();--%>
+            <%--$.ajax({--%>
+                <%--url:"${ctx}/admin/album/save",--%>
+                <%--type:"post",--%>
+                <%--data:"title="+title+"&parentMenu="+pm+"&childMenu="+cm,--%>
+                <%--success:function(msg){--%>
+                    <%--alert("添加成功");--%>
+                <%--}--%>
+            <%--});--%>
+
+        <%--});--%>
     </script>
 </body>
 </html>
