@@ -46,7 +46,9 @@
     <tfoot>
         <tr>
             <td colspan="5">
-                <tags:pagination page="${albums}" paginationSize="12"/>
+                <c:if test="${fn:length(albums.content) > 0}">
+                    <tags:pagination page="${albums}" paginationSize="12"/>
+                </c:if>
             </td>
         </tr>
     </tfoot>

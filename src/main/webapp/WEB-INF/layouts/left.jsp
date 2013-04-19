@@ -62,7 +62,7 @@
         <div id="positioner">
             <div class="holder p1">
                 <dl class="menu">
-                    <dt><a href="/">Home</a></dt>
+                    <dt><a href="${ctx}/picture/index">Home</a></dt>
                 </dl>
             </div>
             <div class="holder p2">
@@ -71,6 +71,7 @@
                     <dd>
                         <a href="${ctx}/album/list/CorporateBusiness-Events">Events</a>
                         <a href="${ctx}/album/list/CorporateBusiness-Interiorsbuildings">Interiors &amp; buildings</a>
+                        <a href="${ctx}/album/list/CorporateBusiness-conference">conference</a>
                         <a href="${ctx}/album/list/CorporateBusiness-Other">Other</a>
                     </dd>
                 </dl>
@@ -79,10 +80,10 @@
                 <dl class="menu">
                     <dt><a class="sub">Wedding</a></dt>
                     <dd>
-                        <a href="${ctx}">Preparation</a>
-                        <a href="#">Ceremony</a>
-                        <a href="#">Reception</a>
-                        <a href="#">Session</a>
+                        <a href="${ctx}/album/list/Wedding-Preparation">Preparation</a>
+                        <a href="${ctx}/album/list/Wedding-Ceremony">Ceremony</a>
+                        <a href="${ctx}/album/list/Wedding-Reception">Reception</a>
+                        <a href="${ctx}/album/list/Wedding-Session">Session</a>
                     </dd>
                 </dl>
             </div>

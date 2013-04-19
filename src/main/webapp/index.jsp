@@ -15,7 +15,7 @@
 <body>
 <div style="margin-top: 10%;">
     <div style="width: 45%; float:left;">
-        <a href="/index"><img id="fotografia" src="${ctx}/static/images/web-top-DG.jpg" alt="wedding, commercial photography" style="border-style: none" /></a>
+        <a href="${ctx}/picture/index"><img id="fotografia" src="${ctx}/static/images/web-top-DG.jpg" alt="wedding, commercial photography" style="border-style: none" /></a>
     </div>
     <div style="width: 45%; float:left;">
         <a href="http://daniel-photo.lofter.com/"><img id="fotografia" src="${ctx}/static/images/web-top-Dan.jpg" alt="artistic photography" style="border-style: none" /></a>

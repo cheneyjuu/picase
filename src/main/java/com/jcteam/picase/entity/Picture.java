@@ -22,6 +22,7 @@ public class Picture extends IdEntity {
     private String originName;
     private String thumbName;
     private String sliderName;
+    private Long showIndex;
 
     public String getSliderName() {
         return sliderName;
@@ -71,5 +72,13 @@ public class Picture extends IdEntity {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Long getShowIndex() {
+        return showIndex;
+    }
+
+    public void setShowIndex(Long showIndex) {
+        this.showIndex = showIndex;
     }
 }

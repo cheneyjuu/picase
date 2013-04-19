@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -31,6 +32,7 @@
                             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" onclick="deletePicture(this);"><i class="icon-trash"></i> 删除图片</a></li>
+                                <li><a href="#" onclick="showIndexPicture(this);"><i class="icon-home"></i> 首页显示</a></li>
                             </ul>
                         </div>
                     </div>
@@ -71,6 +73,10 @@
                 $(currentDom).parents(deleteNode).remove();
             }
         });
+    }
+
+    function showIndexPicture(currentDom) {
+        var picId = $(currentDom).parent().parent().siblings(":eq(1)").val();
     }
 </script>
 </body>

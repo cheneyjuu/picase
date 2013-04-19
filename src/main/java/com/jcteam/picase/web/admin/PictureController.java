@@ -74,8 +74,9 @@ public class PictureController {
                 ImageTools.convert(inFile, sliderFile, sliderWidth, sliderHeight, 90);
                 ImageTools.convert(inFile, thumbFile, thumbWidth, thumbHeight, 90);
                 picture.setOriginName(fileNameAndPathMap.get("fileName"));
-                picture.setSliderName("s_"+fileNameAndPathMap.get("fileName"));
-                picture.setThumbName("t_"+fileNameAndPathMap.get("fileName"));
+                picture.setSliderName("s_" + fileNameAndPathMap.get("fileName"));
+                picture.setThumbName("t_" + fileNameAndPathMap.get("fileName"));
+                picture.setShowIndex(new Long(0));
                 pictureService.save(picture);
             }
 

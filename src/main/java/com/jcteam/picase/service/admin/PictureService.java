@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
+import java.util.List;
 
 /**
  * User: juchen
@@ -53,6 +54,28 @@ public class PictureService {
 
     public Picture findById(final Long pictureId){
         return pictureDao.findOne(pictureId);
+    }
+
+    public List<Picture> findByAlbumId(final Long albumId) {
+        return pictureDao.findAll(new Specification<Picture>() {
+            @Override
+            public Predicate toPredicate(Root<Picture> pictureRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<String> aid = pictureRoot.get("album").get("id");
+                criteriaQuery.where(criteriaBuilder.equal(aid, albumId));
+                return null;
+            }
+        });
+    }
+
+    public List<Picture> findIndexPictureById(){
+        return pictureDao.findAll(new Specification<Picture>() {
+            @Override
+            public Predicate toPredicate(Root<Picture> pictureRoot, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<Long> picId = pictureRoot.get("showIndex");
+                criteriaQuery.where(criteriaBuilder.equal(picId, new Long(1)));
+                return null;
+            }
+        });
     }
 
     @Transactional (readOnly = false)

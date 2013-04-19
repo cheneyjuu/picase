@@ -17,10 +17,10 @@
                     <div id="captifyContent159" class="captifyContent cclight-background">
                         <c:forEach items="${albums.content}" var="album">
                             <div class="ccRow">
-                                <div class="ccItem" style="margin-right: 5px;margin-bottom: 5px; width: 225px; height: 225px;">
+                                <div class="ccItem" style="margin-right: 1px;margin-bottom: 1px; width: 225px; height: 225px;">
                                     <div class="viewport">
-                                        <a class="light-background" href="/details/${album.id}">
-                                            <img src="${ctx}${album.imagePath}${album.thumbImage}" class="captify captify159" alt="${album.title}" style="max-height:225px;max-width:225px" original="/media/plg_jblibrary/imagecache/23f7ab440677b9072372e69f46728b1e.jpg">
+                                        <a class="light-background" href="${ctx}/picture/list/${album.id}">
+                                            <img src="${ctx}${album.imagePath}${album.thumbImage}" class="captify captify159" alt="${album.title}" style="height:225px;width:225px" original="/media/plg_jblibrary/imagecache/23f7ab440677b9072372e69f46728b1e.jpg">
                                             <span class="light-background bottom">${album.title}</span>
                                         </a>
                                     </div>
@@ -36,14 +36,17 @@
         </div>
 
     </div>
-    <div class="pill-content pull-right"><tags:pagination page="${albums}" paginationSize="12"/></div>
+    <div class="pill-content pull-right">
+        <c:if test="${fn:length(albums.content) > 0}">
+            <tags:pagination page="${albums}" paginationSize="12"/>
+        </c:if>
+    </div>
     <script type="text/javascript">
         $(function(){
             $('.viewport').mouseenter(function(e){
                 var titleSpan = $(this).children('a').children('span');
                 if(titleSpan.is(':hidden')){
                     titleSpan.slideToggle(800);
-//                titleSpan.css("display","inline");
                 };
 
             }).mouseleave(function(e) {
