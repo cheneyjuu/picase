@@ -32,7 +32,14 @@
                             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" onclick="deletePicture(this);"><i class="icon-trash"></i> 删除图片</a></li>
-                                <li><a href="#" onclick="showIndexPicture(this);"><i class="icon-home"></i> 首页显示</a></li>
+                                <c:choose>
+                                    <c:when test="${pic.showIndex == 1}">
+                                        <li><a href="#" onclick="showIndexPicture(this);"><i class="icon-home"></i> 取消首页显示</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li><a href="#" onclick="showIndexPicture(this);"><i class="icon-home"></i> 在首页显示</a></li>
+                                    </c:otherwise>
+                                </c:choose>
                             </ul>
                         </div>
                     </div>
@@ -77,6 +84,24 @@
 
     function showIndexPicture(currentDom) {
         var picId = $(currentDom).parent().parent().siblings(":eq(1)").val();
+        var currentText = $(currentDom).text();
+        var status;
+        $(currentDom).empty();
+        if ($.trim(currentText) === "在首页显示"){
+            status = 1;
+            $(currentDom).append("<i class='icon-home'></i>取消首页显示");
+        } else {
+            status = 0;
+            $(currentDom).append("<i class='icon-home'></i>在首页显示");
+        }
+        $.ajax({
+            url : "${ctx}/admin/picture/showIndex",
+            type : "post",
+            data : "perloadPictureId="+picId+"&status="+status,
+            success : function(){
+                alert("操作成功");
+            }
+        });
     }
 </script>
 </body>

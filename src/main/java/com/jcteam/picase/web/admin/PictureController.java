@@ -57,10 +57,10 @@ public class PictureController {
                 int originWidth = bi.getWidth();//宽
                 int sliderWidth,sliderHeight;
                 int thumbWidth,thumbHeight;
-                sliderWidth = originWidth>480?480:originWidth;
-                sliderHeight = originHeight>830?830:originHeight;
-                thumbWidth = originWidth>260?260:originWidth;
-                thumbHeight = originHeight>180?180:originHeight;
+                sliderWidth = originWidth>1000?1000:originWidth;
+                sliderHeight = originHeight>550?550:originHeight;
+                thumbWidth = originWidth>165?165:originWidth;
+                thumbHeight = originHeight>80?80:originHeight;
                 fileNameAndPathMap = handlerUpload.uploadFile(file,request);
                 Picture picture = new Picture();
                 picture.setIntro(intro);
@@ -122,11 +122,28 @@ public class PictureController {
         return null;
     }
 
+    @RequestMapping (value = "showIndex", method = RequestMethod.POST)
+    @ResponseBody
+    public String showIndex(@Valid @ModelAttribute("perloadPicture") Picture picture,
+                            @RequestParam(value = "status") Long status) {
+        picture.setShowIndex(status);
+        pictureService.save(picture);
+        return null;
+    }
+
     @ModelAttribute("preloadAlbum")
     public Album getAlbum(@RequestParam(value = "albumid", required = false) Long albumid) {
         if (albumid != null) {
             Album album =  albumService.findById(albumid);
             return album;
+        }
+        return null;
+    }
+
+    @ModelAttribute("perloadPicture")
+    public Picture getPicture(@RequestParam(value = "perloadPictureId", required = false) Long pictureId) {
+        if (pictureId != null){
+            return pictureService.findById(pictureId);
         }
         return null;
     }
