@@ -67,6 +67,11 @@ public class AlbumService {
         return albumDao.findOne(id);
     }
 
+    @Transactional (readOnly = false)
+    public void delete(Long id){
+        albumDao.delete(id);
+    }
+
     @Autowired
     public void setAlbumDao(AlbumDao albumDao) {
         this.albumDao = albumDao;

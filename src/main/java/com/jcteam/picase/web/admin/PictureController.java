@@ -83,7 +83,7 @@ public class PictureController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return "/admin/index";
     }
 
     @RequestMapping(value = "list/{menu}/{albumId}")

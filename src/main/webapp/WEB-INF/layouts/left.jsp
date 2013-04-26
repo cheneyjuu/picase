@@ -62,7 +62,7 @@
         <div id="positioner">
             <div class="holder p1">
                 <dl class="menu">
-                    <dt><a href="${ctx}/picture/index">Home</a></dt>
+                    <dt><a href="${ctx}">Home</a></dt>
                 </dl>
             </div>
             <div class="holder p2">

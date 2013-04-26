@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <a class="btn" href="${ctx}/admin/picture/list/${album.parentMenu}-${album.childMenu}/${album.id}"><i class="icon-list"></i> 查看</a>
-                    <a class="btn btn-info" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-pencil icon-white"></i> 修改</a>
+                    <%--<a class="btn btn-info" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-pencil icon-white"></i> 修改</a>--%>
                     <a class="btn btn-danger" href="${ctx}/admin/picture/save/${album.id}"><i class="icon-trash icon-white"></i> 删除</a>
                 </td>
             </tr>

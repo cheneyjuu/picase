@@ -103,6 +103,13 @@ public class AlbumController {
         return "admin/album/list";
     }
 
+    @RequestMapping (value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(@RequestParam("albumid") Long albumid) {
+        albumService.delete(albumid);
+        return null;
+    }
+
     @Autowired
     public void setAlbumService(AlbumService albumService) {
         this.albumService = albumService;

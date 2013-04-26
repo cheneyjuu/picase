@@ -18,7 +18,7 @@
         <ul id="myGallery">
             <c:forEach items="${pictureList}" var="picture">
             <li>
-                <img style="max-width: 1000px; max-height: 550px;" data-frame="${ctx}${picture.imagePath}${picture.thumbName}" src="${ctx}${picture.imagePath}${picture.sliderName}" title="" data-description="" />
+                <img data-frame="${ctx}${picture.imagePath}${picture.thumbName}" src="${ctx}${picture.imagePath}${picture.sliderName}" title="" data-description="" />
             </li>
                 </c:forEach>
         </ul>
@@ -27,6 +27,7 @@
         </div>
         <script type="text/javascript">
             $(function(){
+                $(".gv_panel > img").css("width:auto;display:block;");
                 $('#myGallery').galleryView({
                     transition_speed: 800, 		//INT - duration of panel/frame transition (in milliseconds)
                     transition_interval: 800, 		//INT - delay between panel/frame transitions (in milliseconds)
@@ -38,7 +39,7 @@
                     panel_width: 1000, 				//INT - width of gallery panel (in pixels)
                     panel_height: 550, 				//INT - height of gallery panel (in pixels)
                     panel_animation: 'fade', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
-                    panel_scale: 'crop', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
+                    panel_scale: 'fit', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
                     overlay_position: 'bottom', 	//STRING - position of panel overlay (bottom, top)
                     pan_images: true,				//BOOLEAN - flag to allow user to grab/drag oversized images within gallery
                     pan_style: 'drag',				//STRING - panning method (drag = user clicks and drags image to pan, track = image automatically pans based on mouse position
@@ -55,7 +56,7 @@
                     frame_width: 165, 				//INT - width of filmstrip frames (in pixels)
                     frame_height: 80, 				//INT - width of filmstrip frames (in pixels)
                     frame_opacity: 0.5, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
-                    frame_scale: 'crop', 			//STRING - cropping option for filmstrip images (same as above)
+                    frame_scale: 'fit', 			//STRING - cropping option for filmstrip images (same as above)
                     frame_gap: 5, 					//INT - spacing between frames within filmstrip (in pixels)
                     show_infobar: false,			//BOOLEAN - flag to show or hide infobar
                     infobar_opacity: 0				//FLOAT - transparency for info bar
