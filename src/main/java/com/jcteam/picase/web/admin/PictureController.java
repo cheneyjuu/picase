@@ -57,10 +57,10 @@ public class PictureController {
                 int originWidth = bi.getWidth();//宽
                 int sliderWidth,sliderHeight;
                 int thumbWidth,thumbHeight;
-                sliderWidth = originWidth>960?960:originWidth;
+                sliderWidth = originWidth>900?900:originWidth;
                 sliderHeight = originHeight>600?600:originHeight;
-                thumbWidth = originWidth>225?225:originWidth;
-                thumbHeight = originHeight>80?80:originHeight;
+                thumbWidth = originWidth>90?90:originWidth;
+                thumbHeight = originHeight>60?60:originHeight;
                 fileNameAndPathMap = handlerUpload.uploadFile(file,request);
                 Picture picture = new Picture();
                 picture.setIntro(intro);

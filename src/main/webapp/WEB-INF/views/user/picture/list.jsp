@@ -41,6 +41,15 @@
     <script>
         Galleria.loadTheme('${ctx}/static/galleria/themes/classic/galleria.classic.min.js');
         Galleria.run('#galleria');
+        Galleria.configure({
+            showImagenav: 'true',
+            autoplay: 5000,
+            imageCrop: false,
+            preload:'7',
+            responsive:true,
+            maxScaleRatio:'1',
+            minScaleRatio:'1'
+        });
     </script>
 </body>
 </html>
