@@ -37,7 +37,7 @@
 	position: absolute; 
 	width: 20px; 
 	height: 20px; 
-	background: url(themes/light/info.png) #222; 
+	background: url(themes/dark/info.png) #222;
 	cursor: pointer;
 	z-index: 200;
 }
@@ -52,14 +52,14 @@
 	font-size: 10pt;
 	font-weight: bold;
 	color: white;
-	
+
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	display: none;
 	vertical-align: middle;
 	z-index: 2000;
-	
+
 }
 
 
@@ -74,7 +74,7 @@
 .gv_filmstrip { margin: 0; padding: 0; position: absolute; top: 0; left: 0; }
 
 /* FILMSTRIP FRAMES (contains both images and captions) */
-.gv_frame { 
+.gv_frame {
 	cursor: pointer;
 	float: left;
 	position: relative;
@@ -111,7 +111,7 @@
 .gv_navPause,
 .gv_navNext,
 .gv_navPrev {
-	
+
 	opacity: 0.3;
 	-moz-opacity: 0.3;
 	-khtml-opacity: 0.3;
@@ -155,35 +155,38 @@
 	height: 30px;
 	width: 30px;
 	cursor: pointer;
-	background: url(themes/light/play-big.png) top left no-repeat;
+	background: url(themes/dark/play-big.png) top left no-repeat;
 }
 .gv_navPause {
 	height: 30px;
 	width: 30px;
 	cursor: pointer;
-	background: url(themes/light/pause-big.png) top left no-repeat;
+	background: url(themes/dark/pause-big.png) top left no-repeat;
 }
 .gv_navNext {
 	height: 20px;
 	width: 20px;
 	cursor: pointer;
-	background: url(themes/light/next.png) top left no-repeat;
+	background: url(themes/dark/next.png) top left no-repeat;
 }
 .gv_navPrev {
 	height: 20px;
 	width: 20px;
 	cursor: pointer;
-	background: url(themes/light/prev.png) top right no-repeat;
+	background: url(themes/dark/prev.png) top right no-repeat;
 }
 .gv_panelNavNext {
-	height: 20px;
-	width: 20px;
+	height: 40px;
+	width: 40px;
 	cursor: pointer;
-	background: url(themes/light/panel-next.png) top left no-repeat;
+	background: url(themes/dark/panel-next-big.png) top left no-repeat;
 }
 .gv_panelNavPrev {
-	height: 20px;
-	width: 20px;
+	height: 40px;
+	width: 40px;
 	cursor: pointer;
-	background: url(themes/light/panel-prev.png) top right no-repeat;
+	background: url(themes/dark/panel-prev-big.png) top right no-repeat;
+}
+.gv_galleryWrap{
+    background: #fff;
 }

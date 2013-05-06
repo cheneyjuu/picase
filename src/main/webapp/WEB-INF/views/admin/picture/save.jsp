@@ -9,6 +9,10 @@
 </head>
 <body>
 <div class="container">
+    <div class="span2"></div>
+    <div class="progress progress-striped active span4">
+        <div class="bar" style="width: 100%;">正在上传，稍后...</div>
+    </div>
     <form class="span10 form-horizontal" action="${ctx}/admin/picture/upload" method="post" enctype="multipart/form-data">
         <div class="control-group">
             <label class="control-label" for="">图片简介：</label>
@@ -42,7 +46,10 @@
         $(addto).after(newInput);
     }
 
+    $(".progress").hide();
+
     $("#submit_form").click(function(){
+        $(".progress").show();
         $("form").submit();
     });
 </script>

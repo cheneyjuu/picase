@@ -62,7 +62,7 @@
         <div id="positioner">
             <div class="holder p1">
                 <dl class="menu">
-                    <dt><a href="${ctx}">Home</a></dt>
+                    <dt><a href="${ctx}/index.jsp">Home</a></dt>
                 </dl>
             </div>
             <div class="holder p2">
@@ -103,7 +103,7 @@
             </div>
             <div class="holder p6">
                 <dl class="menu">
-                    <dt><a href="/aboutus">About us &amp; contact</a></dt>
+                    <dt><a href="${ctx}/aboutus">About us &amp; contact</a></dt>
                 </dl>
             </div>
         </div>

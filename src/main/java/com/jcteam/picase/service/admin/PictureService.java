@@ -1,5 +1,6 @@
 package com.jcteam.picase.service.admin;
 
+import com.jcteam.picase.entity.Album;
 import com.jcteam.picase.entity.Picture;
 import com.jcteam.picase.repository.PictureDao;
 import org.springframework.beans.factory.annotation.Autowired;

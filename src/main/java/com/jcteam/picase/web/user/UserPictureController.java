@@ -26,14 +26,14 @@ public class UserPictureController {
     public String list(@PathVariable("albumId") Long albumId, Model model) {
         List<Picture> pictureList = pictureService.findByAlbumId(albumId);
         model.addAttribute("pictureList", pictureList);
-        return "/user/picture/list";
+        return "user/picture/list";
     }
 
     @RequestMapping (value = "index", method = RequestMethod.GET)
     public String index(Model model) {
         List<Picture> pictureList = pictureService.findIndexPictureById();
         model.addAttribute("pictureList", pictureList);
-        return "/user/picture/list";
+        return "user/picture/list";
     }
 
     @Autowired

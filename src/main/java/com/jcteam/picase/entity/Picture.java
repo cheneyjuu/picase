@@ -22,6 +22,8 @@ public class Picture extends IdEntity {
     private String originName;
     private String thumbName;
     private String sliderName;
+    private String originWidth;
+    private String originHeight;
     private Long showIndex;
 
     public String getSliderName() {
@@ -80,5 +82,21 @@ public class Picture extends IdEntity {
 
     public void setShowIndex(Long showIndex) {
         this.showIndex = showIndex;
+    }
+
+    public String getOriginWidth() {
+        return originWidth;
+    }
+
+    public void setOriginWidth(String originWidth) {
+        this.originWidth = originWidth;
+    }
+
+    public String getOriginHeight() {
+        return originHeight;
+    }
+
+    public void setOriginHeight(String originHeight) {
+        this.originHeight = originHeight;
     }
 }

@@ -57,14 +57,16 @@ public class PictureController {
                 int originWidth = bi.getWidth();//宽
                 int sliderWidth,sliderHeight;
                 int thumbWidth,thumbHeight;
-                sliderWidth = originWidth>1000?1000:originWidth;
-                sliderHeight = originHeight>550?550:originHeight;
-                thumbWidth = originWidth>165?165:originWidth;
+                sliderWidth = originWidth>960?960:originWidth;
+                sliderHeight = originHeight>600?600:originHeight;
+                thumbWidth = originWidth>225?225:originWidth;
                 thumbHeight = originHeight>80?80:originHeight;
                 fileNameAndPathMap = handlerUpload.uploadFile(file,request);
                 Picture picture = new Picture();
                 picture.setIntro(intro);
                 picture.setAlbum(album);
+                picture.setOriginWidth(String.valueOf(originWidth));
+                picture.setOriginHeight(String.valueOf(originHeight));
                 picture.setImagePath(fileNameAndPathMap.get("filePath"));
                 //  真实路径
                 String realPath = request.getSession().getServletContext().getRealPath(fileNameAndPathMap.get("filePath"))+"/";

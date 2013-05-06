@@ -2,8 +2,10 @@ package com.jcteam.picase.web.admin;
 
 import com.jcteam.picase.entity.Album;
 import com.jcteam.picase.entity.Menu;
+import com.jcteam.picase.entity.Picture;
 import com.jcteam.picase.service.admin.AlbumService;
 import com.jcteam.picase.service.admin.MenuService;
+import com.jcteam.picase.service.admin.PictureService;
 import com.jcteam.picase.utility.HandlerUpload;
 import com.jcteam.picase.utility.ImageTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,7 @@ public class AlbumController {
     private static final int PAGE_SIZE = 12;
     private AlbumService albumService;
     private MenuService menuService;
+    private PictureService pictureService;
 
     @RequestMapping (value = "/save", method = RequestMethod.GET)
     public String toSave(Model model) {
@@ -43,8 +46,20 @@ public class AlbumController {
         return "admin/album/save";
     }
 
+    @RequestMapping (value = "/update", method = RequestMethod.GET)
+    public String toUpdate(Model model, @PathVariable("albumId") Long albumId) {
+        model.addAttribute("parentList",menuService.findParentMenu());
+        model.addAttribute("album", albumService.findById(albumId));
+        return "admin/album/update";
+    }
+
+    @RequestMapping (value = "update", method = RequestMethod.POST)
+    public String update () {
+
+        return null;
+    }
+
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-//    @ResponseBody
     public String save(@Valid Album album,
                        @RequestParam("parentName") String parentName,
                        @RequestParam("childName") String childName,
@@ -103,11 +118,41 @@ public class AlbumController {
         return "admin/album/list";
     }
 
-    @RequestMapping (value = "/delete", method = RequestMethod.POST)
-    @ResponseBody
-    public String delete(@RequestParam("albumid") Long albumid) {
+    @RequestMapping (value = "/delete/{albumid}/{menuName}", method = RequestMethod.GET)
+    public String delete(@PathVariable("albumid") Long albumid,
+                         @PathVariable("menuName") String menuName,@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+                         Model model) {
+        // 查找相册下的所有照片，删除物理文件和数据库记录
+        List<Picture> pictureList = pictureService.findByAlbumId(albumid);
+        if (pictureList.size() > 0 ) {
+            String imagePath,originName,sliderName,thumbName;
+            File willDeleteFile;
+            for (Picture picture : pictureList){
+                imagePath = picture.getImagePath();
+                originName = picture.getOriginName();
+                sliderName = picture.getSliderName();
+                thumbName = picture.getThumbName();
+                willDeleteFile = new File(imagePath+originName);
+                if (!willDeleteFile.isDirectory()){
+                    willDeleteFile.delete();
+                }
+                willDeleteFile = new File(imagePath+sliderName);
+                if (!willDeleteFile.isDirectory()){
+                    willDeleteFile.delete();
+                }
+                willDeleteFile = new File(imagePath+thumbName);
+                if (!willDeleteFile.isDirectory()){
+                    willDeleteFile.delete();
+                }
+                // 删除数据库中的记录
+                pictureService.delete(picture.getId());
+            }
+        }
+        //删除相册记录
         albumService.delete(albumid);
-        return null;
+        Page<Album> albums = albumService.findByParentMenu(menuName, pageNumber, PAGE_SIZE);
+        model.addAttribute("albums", albums);
+        return "/admin/album/list";
     }
 
     @Autowired
@@ -118,5 +163,10 @@ public class AlbumController {
     @Autowired
     public void setMenuService(MenuService menuService) {
         this.menuService = menuService;
+    }
+
+    @Autowired
+    public void setPictureService(PictureService pictureService) {
+        this.pictureService = pictureService;
     }
 }

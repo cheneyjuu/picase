@@ -29,7 +29,7 @@
                 <li><a href="${ctx}/admin/album/list/Fashion">Fashion</a></li>
                 <li><a href="${ctx}/admin/album/list/Wedding">Wedding</a></li>
                 <li><a href="${ctx}/admin/album/list/Portrait">Portrait</a></li>
-                <li><a href="#">About us & contact</a></li>
+                <li><a href="${ctx}/admin/about/add">About us & contact</a></li>
             </ul>
         </div>
         <div class="main"><sitemesh:body /></div>
