@@ -8,7 +8,14 @@
 <head>
     <title></title>
     <style>
-        #galleria{ width: 930px; height: 600px; background: #fff; }
+		.galleria-image .galleria-images .galleria-stage{
+			width:900px;
+			height: 600px;
+		}
+		.galleria-layer img {
+			top:0;
+		}
+        #galleria{ width: 900px; height: 600px; background: #fff; }
         .galleria-container {
             background: #fff;
         }
